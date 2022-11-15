@@ -1,7 +1,7 @@
 function add() {
     let sum = 0;
     for (let i =0; i < arguments.length; i++){
-        sum += parseInt(arguments);
+        sum += parseInt(arguments[i]);
     }
     return sum;
 }
