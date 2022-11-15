@@ -5,3 +5,11 @@ function add() {
     }
     return sum;
 }
+
+function subtract() {
+    let total = arguments[0];
+    for (let i = 1; i < arguments.length; i++){
+        total -= parseInt(arguments[i]);
+    }
+    return total;
+}
