@@ -1,13 +1,13 @@
 function add() {
-    let sum = arguments[0];
-    for (let i =0; i < arguments.length; i++){
+    let sum = parseInt(arguments[0]);
+    for (let i = 1; i < arguments.length; i++){
         sum += parseInt(arguments[i]);
     }
     return sum;
 }
 
 function subtract() {
-    let total = arguments[0];
+    let total = parseInt(arguments[0]);
     for (let i = 1; i < arguments.length; i++){
         total -= parseInt(arguments[i]);
     }
@@ -15,7 +15,7 @@ function subtract() {
 }
 
 function multiply() {
-    let total = arguments[0];
+    let total = parseInt(arguments[0]);
     for (let i = 1; i < arguments.length; i++){
         total *= parseInt(arguments[i]);
     }
@@ -23,9 +23,29 @@ function multiply() {
 }
 
 function divide() {
-    let total = arguments[0];
+    let total = parseInt(arguments[0]);
     for (let i = 1; i < arguments.length; i++){
         total /= parseInt(arguments[i]);
     }
     return total;
 }
+
+function operate(equation) {
+    if (equation.includes('+')){
+        let newEquation = equation.split('+');
+        return add(...newEquation);
+    }
+    else if (equation.includes('-')){
+        let newEquation = equation.split('-');
+        return subtract(...newEquation);
+    }
+    else if (equation.includes('*')){
+        let newEquation = equation.split('*');
+        return multiply(...newEquation);
+    }
+    else if (equation.includes('/')){
+        let newEquation = equation.split('/');
+        return divide(...newEquation);
+    }
+}
+
