@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+buttons {
+    height: 100px;
+    max-width: auto;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-areas: 
+    "tp tp tp rt"
+    "sd sd sd rt"
+    "td td td rt"
+    "fh fh fh rt"
+    "z z p rt";
+}
+
+.first-row {
+    grid-area: tp;
+}
+
+.second-row {
+    grid-area: sd;
+}
+
+.third-row {
+    grid-area: td;
+}
+
+.fourth-row {
+    grid-area: fh;
+}
+
+.zero {
+    grid-area: z;
+}
+
+.decimal {
+    grid-area: p;
+}
+
+.right-side {
+    grid-area: rt;
+}
