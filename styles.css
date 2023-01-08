@@ -1,4 +1,8 @@
 body {
+    background-color: #1b2432;
+}
+
+.flex-body {
     display: flex;
     align-items: center;
     justify-content: center;
