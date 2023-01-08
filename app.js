@@ -1,3 +1,9 @@
+let display = document.getElementById("input");
+
+let total = 0;
+
+display.value = total;
+
 function add() {
     let sum = parseInt(arguments[0]);
     for (let i = 1; i < arguments.length; i++){
