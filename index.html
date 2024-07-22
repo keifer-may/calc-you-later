@@ -5,34 +5,146 @@
     <script defer type="text/javascript" src="./app.js"></script>
     <link rel="stylesheet" href="./styles.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>calc-you-later</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    spacing: {
+                        sm: '8px',
+                        md: '12px',
+                        lg: '16px',
+                        xl: '24px',
+                    }
+                    extend: {
+                        colors: {
+                            clifford: '#da373d',
+                        }
+                    }
+                }
+            }
+        </script>
 </head>
-<body>
-    <div id="container">
-        <input class="input" id="input" value="0">
-        <button class="top-button" id="clear">Clear</button>
-        <button class="top-button" id="negative">+/-</button>
-        <button class="top-button" id="percentage">%</button>
-        <button class="operator-button" id="divide">/</button>
-        <button class="number-button" id="seven">7</button>
-        <button class="number-button" id="eight">8</button>
-        <button class="number-button" id="nine">9</button>
-        <button class="operator-button" id="multiply">*</button>
-        <button class="number-button" id="four">4</button>
-        <button class="number-button" id="five">5</button>
-        <button class="number-button" id="six">6</button>
-        <button class="operator-button" id="subtract">-</button>
-        <button class="number-button" id="one">1</button>
-        <button class="number-button" id="two">2</button>
-        <button class="number-button" id="three">3</button>
-        <button class="operator-button" id="add">+</button>
-        <button class="number-button" id="zero">0</button>
-        <button class="number-button" id="decimal">.</button>
-        <button class="operator-button" id="equals">=</button>
-    </div>    
+<body class="bg-white dark:bg-zinc-900">
+    <div class="container mx-auto h-3/4">
+        <main
+            id="calculator"
+            class="container mx-auto grid grid-rows-5 grid-column-4 gap-2 p-6 bg-zinc-900 dark:bg-gray-400 justify-stretch align-stretch w-2/3 h-3/4 text-2xl"
+        >
+            <p
+                class="col-span-4 border-gray-600 rounded-md bg-gray-200"
+                id="INPUT"
+            >0</p><button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="Delete"
+            >
+                CLR</button
+            ><button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="/"
+            >
+                /</button
+            ><button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="*"
+            >
+                *</button
+            ><button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="-"
+            >
+                -
+            </button>
+
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="7"
+            >
+                7
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="8"
+            >
+                8
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="9"
+            >
+                9
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid row-span-2"
+                id="+"
+            >
+                +
+            </button>
+
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="4"
+            >
+                4
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="5"
+            >
+                5
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="6"
+            >
+                6
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="1"
+            >
+                1
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="2"
+            >
+                2
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="3"
+            >
+                3
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid row-span-2"
+                id="Enter"
+            >
+                Enter
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid col-span-2"
+                id="0"
+            >
+                0
+            </button>
+            <button
+                class="active:bg-emerald-700 hover:bg-slate-600 border-slate-600 rounded-md solid border-2 place-self-stretch grid"
+                id="dot"
+            >
+                .
+            </button>
+
+        </main>
+    </div>
+
+    <script type="module" src="script.js"></script>
+
 </body>
 </html>

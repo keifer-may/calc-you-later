@@ -1,150 +1,74 @@
-// let display = document.getElementById("input");
+const input = document.getElementById("INPUT");
 
-// let total = 0;
+document.addEventListener("keydown", logKey);
 
-// display.value = total;
+const buttons = document.querySelectorAll("button");
 
-// function add() {
-//     let sum = parseInt(arguments[0]);
-//     for (let i = 1; i < arguments.length; i++){
-//         sum += parseInt(arguments[i]);
-//     }
-//     return sum;
-// }
-
-// function subtract() {
-//     let total = parseInt(arguments[0]);
-//     for (let i = 1; i < arguments.length; i++){
-//         total -= parseInt(arguments[i]);
-//     }
-//     return total;
-// }
-
-// function multiply() {
-//     let total = parseInt(arguments[0]);
-//     for (let i = 1; i < arguments.length; i++){
-//         total *= parseInt(arguments[i]);
-//     }
-//     return total;
-// }
-
-// function divide() {
-//     let total = parseInt(arguments[0]);
-//     for (let i = 1; i < arguments.length; i++){
-//         total /= parseInt(arguments[i]);
-//     }
-//     return total;
-// }
-
-// function operate(equation) {
-//     if (equation.includes('+')){
-//         let newEquation = equation.split('+');
-//         return add(...newEquation);
-//     }
-//     else if (equation.includes('-')){
-//         let newEquation = equation.split('-');
-//         return subtract(...newEquation);
-//     }
-//     else if (equation.includes('*')){
-//         let newEquation = equation.split('*');
-//         return multiply(...newEquation);
-//     }
-//     else if (equation.includes('/')){
-//         let newEquation = equation.split('/');
-//         return divide(...newEquation);
-//     }
-// }
-
-
-function calculate(num1, operator, num2) {
-    let formNum1 = parseFloat(num1);
-    let formNum2 = parseFloat(num2);
-    let total = 0
-    let operators = ["+", "-", "/","*"]
-    
-    if(isNaN(formNum1) && isNaN(formNum2)) {
-        return total
-    } else if (isNaN(formNum1)) {
-        return formNum2
-    } else if (isNaN(formNum2)) {
-        return formNum1
-    } else if (operators.includes(operator)) {
-        total = eval(num1 + operator + num2);
-        let evalTotal = parseFloat(total)
-        let intTotal = parseInt(evalTotal);
-        if (total == intTotal) {
-            return intTotal
-        } else {
-            return evalTotal
-        }
+function logKey(e) {
+    // console.log(` ${e.code} ${e.key}`);
+    let pressed = e.key;
+    // console.log(pressed);
+    if (pressed === ".") {
+        pressed = "dot";
+        document.getElementById(pressed).click();
     } else {
-        return 0
+        document.getElementById(pressed).click();
     }
-
 }
 
-// function subtract(num1, num2) {
-//     let formNum1 = parseFloat(num1);
-//     let formNum2 = parseFloat(num2);
-//     let total = 0
-    
-//     if(isNaN(formNum1) && isNaN(formNum2)) {
-//         return total
-//     } else if (isNaN(formNum1)) {
-//         return -formNum2
-//     } else if (isNaN(formNum2)) {
-//         return formNum1
-//     } else {
-//         total = formNum1 - formNum2;
-//         let intTotal = parseInt(total);
-//         if (total == intTotal) {
-//             return intTotal
-//         } else {
-//             return total
-//         }
-//     }
-// }
-
-// function multiply(num1, num2) {
-//     let formNum1 = parseFloat(num1);
-//     let formNum2 = parseFloat(num2);
-//     let total = 0
-    
-//     if(isNaN(formNum1) && isNaN(formNum2)) {
-//         return total
-//     } else if (isNaN(formNum1)) {
-//         return formNum2
-//     } else if (isNaN(formNum2)) {
-//         return formNum1
-//     } else {
-//         total = formNum1 * formNum2;
-//         let intTotal = parseInt(total);
-//         if (total == intTotal) {
-//             return intTotal
-//         } else {
-//             return total
-//         }
-//     }
-// }
-
-// function divide(num1, num2) {
-//     let formNum1 = parseFloat(num1);
-//     let formNum2 = parseFloat(num2);
-//     let total = 0
-    
-//     if(isNaN(formNum1) && isNaN(formNum2)) {
-//         return total
-//     } else if (isNaN(formNum1)) {
-//         return formNum2
-//     } else if (isNaN(formNum2)) {
-//         return formNum1
-//     } else {
-//         total = formNum1 / formNum2;
-//         let intTotal = parseInt(total);
-//         if (total == intTotal) {
-//             return intTotal
-//         } else {
-//             return total
-//         }
-//     }
-// }
+let createEquation = "";
+let endStatement = false;
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function () {
+        let sendChar = this.id;
+        if (sendChar == "Delete") {
+            input.innerHTML = 0;
+            createEquation = "";
+        } else if (sendChar == "dot") {
+            if (input.innerHTML.includes(".") == false) {
+                input.innerHTML += ".";
+                endStatement = false;
+            } else {
+                input.innerHTML = input.innerHTML;
+            }
+        } else if (sendChar == "Enter") {
+            createEquation += input.innerHTML;
+            // console.log(createEquation);
+            let amount = eval(createEquation);
+            let lengthAmount = amount.toString().length;
+            if (lengthAmount > 10 && amount % 1 != 0) {
+                input.innerHTML = amount.toFixed(3);
+                endStatement = true;
+                createEquation = "";
+            } else if (amount == "Infinity") {
+                alert("You can't divide by zero, you silly goose!");
+                input.innerHTML = 0;
+                endStatement = true;
+                createEquation = "";
+            } else {
+                input.innerHTML = amount;
+                endStatement = true;
+                createEquation = "";
+            }
+        } else if (sendChar == "+") {
+            createEquation += input.innerHTML + "+";
+            endStatement = true;
+        } else if (sendChar == "-") {
+            createEquation += input.innerHTML + "-";
+            endStatement = true;
+        } else if (sendChar == "/") {
+            createEquation += input.innerHTML + "/";
+            endStatement = true;
+        } else if (sendChar == "*") {
+            createEquation += input.innerHTML + "*";
+            endStatement = true;
+        } else {
+            if (input.innerHTML == "0" || endStatement == true) {
+                input.innerHTML = sendChar;
+                endStatement = false;
+            } else {
+                input.innerHTML += sendChar;
+            }
+        }
+    });
+}
